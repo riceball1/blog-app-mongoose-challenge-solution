@@ -28,7 +28,7 @@ function generateBlogPostData() {
     title: faker.random.word(),
     content: faker.lorem.paragraph(),
     author: {
-      firstName: faker.name.firstname(),
+      firstName: faker.name.firstName(),
       lastName: faker.name.lastName()
     }
   }
@@ -37,7 +37,7 @@ function generateBlogPostData() {
 // delete the entire database
 function tearDownDb() {
   console.warn('Deleting database');
-  return mongoose.connection.dropDataBase();
+  return mongoose.connection.dropDatabase();
 }
 
 
