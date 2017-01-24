@@ -82,7 +82,7 @@ describe('GET endpoint', function() {
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
-        res.body.bloposts.should.be.a('array');
+        res.body.bloposts.should.be.a('object');
         res.body.blogposts.should.have.length.of.at.least(1);
 
         res.body.blogposts.forEach(function(blogpost) {
@@ -118,8 +118,8 @@ describe('POST endpoint', function() {
         res.body.title.should.equal(newBlogPost.title);
         res.body.id.should.not.be.null;
         res.body.content.should.equal(newBlogPost.content);
-        // res.body.author.should.contain(newBlogPost.author.firstName);
-        // res.body.author.shoud.contain(newBlogPost.author.lastName);
+        res.body.author.should.equal(newBlogPost.author.firstName);
+        res.body.author.shoud.equal(newBlogPost.author.lastName);
         return BlogPost.findById(res.body.id);
       })
       .then(function(blogpost) {
