@@ -118,8 +118,8 @@ describe('POST endpoint', function() {
         res.body.title.should.equal(newBlogPost.title);
         res.body.id.should.not.be.null;
         res.body.content.should.equal(newBlogPost.content);
-        res.body.author.should.equal(newBlogPost.author.firstName);
-        res.body.author.shoud.equal(newBlogPost.author.lastName);
+        res.body.author.firstName.should.equal(newBlogPost.author.firstName);
+        res.body.author.lastName.shoud.equal(newBlogPost.author.lastName);
         return BlogPost.findById(res.body.id);
       })
       .then(function(blogpost) {
