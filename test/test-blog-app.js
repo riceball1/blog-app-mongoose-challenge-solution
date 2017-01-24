@@ -121,7 +121,8 @@ describe('POST endpoint', function() {
         res.body.should.include.keys(expectedKeys);
         res.body.title.should.equal(newBlogPost.title);
         res.body.id.should.not.be.null;
-        res.body.author.should.equal(newBlogPost.authorName);
+        res.body.author.firstName.should.equal(newBlogPost.author.firstName);
+        res.body.author.lastName.should.equal(newBlogPost.author.lastName);
         // res.body.content.should.equal(newBlogPost.content);
         // res.body.author.firstName.should.equal(newBlogPost.author.firstName);
         // res.body.author.lastName.shoud.equal(newBlogPost.author.lastName);
