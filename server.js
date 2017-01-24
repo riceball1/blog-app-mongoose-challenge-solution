@@ -20,7 +20,7 @@ app.get('/blogposts', (req, res) => {
     .find()
     .exec()
     .then(posts => {
-      res.json(posts.map(post => post.apiRepr()));
+      res.status(200).json(posts.map(post => post.apiRepr()));
     })
     .catch(err => {
       console.error(err);

@@ -82,10 +82,10 @@ describe('GET endpoint', function() {
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
-        res.body.bloposts.should.be.a('object');
-        res.body.blogposts.should.have.length.of.at.least(1);
+        res.body.should.be.a('object');
+        res.body.should.have.length.of.at.least(1);
 
-        res.body.blogposts.forEach(function(blogpost) {
+        res.body.forEach(function(blogpost) {
           blogpost.should.be.a('object');
           blopost.should.include.keys('id', 'title', 'author', 'content', 'created');
           resBlogPost = res.body.blogposts[0];
@@ -94,8 +94,8 @@ describe('GET endpoint', function() {
         .then(function(blogpost) {
           resBlogPost.id.should.equal(blogpost.id);
           resBlogPost.title.should.equal(blogpost.title);
-          resBlogPost.author.should.contain(blogpost.author.firstName);
-          esBlogPost.author.should.contain(blogpost.author.lastName);
+          resBlogPost.author.firstName.should.equal(blogpost.author.firstName);
+          esBlogPost.author.lastName.should.equal(blogpost.author.lastName);
           resBlogPost.content.should.equal(blogpost.content);
           resBlogPost.created.should.equal(blogpost.created);
         });
