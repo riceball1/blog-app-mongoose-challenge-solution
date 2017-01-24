@@ -103,7 +103,7 @@ describe('GET endpoint', function() {
   });
 
 describe('POST endpoint', function() {
-  it('should add a new blog post', funtion() {
+  it('should add a new blog post', function() {
     const newBlogPost = generateBlogPostData();
 
     return chai.request(app)
