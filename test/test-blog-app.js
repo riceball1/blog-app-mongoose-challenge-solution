@@ -88,7 +88,8 @@ describe('GET endpoint', function() {
         res.body.forEach(function(blogpost) {
           blogpost.should.be.a('object');
           blogpost.should.include.keys('id', 'title', 'author', 'content', 'created');
-          // did not understand this part
+          });
+        // did not understand this part
           resBlogPost = res.body[0];
           return BlogPost.findById(resBlogPost.id).exec();
           // do I use exec to send a promise
@@ -97,12 +98,10 @@ describe('GET endpoint', function() {
         .then(function(blogpost) {
           resBlogPost.id.should.equal(blogpost.id);
           resBlogPost.title.should.equal(blogpost.title);
-          resBlogPost.author.should.equal(blopost.authorName);
-          // resBlogPost.author.firstName.should.equal(blogpost.author.firstName);
+          resBlogPost.author.should.equal(blogpost.authorName);
           // resBlogPost.author.lastName.should.equal(blogpost.author.lastName);
           resBlogPost.content.should.equal(blogpost.content);
           // resBlogPost.created.should.equal(blogpost.created);
-        });
       });
   });
 
@@ -147,7 +146,7 @@ describe('PUT endpoint', function() {
       }
     };
 
-    return BlogPost
+  BlogPost
       .findOne()
       .exec()
       .then(function(blogpost) {
@@ -173,7 +172,7 @@ describe('PUT endpoint', function() {
         blogpost.title.should.equal(updateData.title);
         blogpost.content.should.equal(updateData.content);
         blogpost.author.firstName.should.equal(updateData.author.firstName);
-          blogpost.author.lastName.should.equal(updateData.author.lastName);
+        blogpost.author.lastName.should.equal(updateData.author.lastName);
       });
   });
 });
