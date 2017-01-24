@@ -134,8 +134,8 @@ describe('POST endpoint', function() {
 describe('PUT endpoint', function() {
   it('should update fields you send over', function() {
     const updateData = {
-      title: "foo bar",
-      content: "new content about blah blah blah"
+      "title": "foo bar",
+      "content": "new content about blah blah blah"
     };
 
     return BlogPost
@@ -147,7 +147,7 @@ describe('PUT endpoint', function() {
           .send(updateData);
       })
       .then(function(res) {
-        res.shoud.have.status(204);
+        res.shoud.have.status(201);
         return BlogPost.findById(updateData.id).exec();
       })
       .then(function(blogpost) {
