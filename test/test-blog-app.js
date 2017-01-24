@@ -121,6 +121,7 @@ describe('POST endpoint', function() {
         res.body.should.include.keys(expectedKeys);
         res.body.title.should.equal(newBlogPost.title);
         res.body.id.should.not.be.null;
+        res.body.author.should.equal(newBlogPost.authorName);
         // res.body.content.should.equal(newBlogPost.content);
         // res.body.author.firstName.should.equal(newBlogPost.author.firstName);
         // res.body.author.lastName.shoud.equal(newBlogPost.author.lastName);
@@ -138,25 +139,41 @@ describe('POST endpoint', function() {
 describe('PUT endpoint', function() {
   it('should update fields you send over', function() {
     const updateData = {
-      "title": "foo bar",
-      "content": "new content about blah blah blah"
+      title: "foo bar",
+      content: "new content about blah blah blah",
+      author: {
+        firstName: "foo",
+        lastName: "bar"
+      }
     };
 
     return BlogPost
       .findOne()
       .exec()
       .then(function(blogpost) {
+        updateData.id = blogpost.id;
         return chai.request(app)
           .put(`/blogposts/${blogpost.id}`)
           .send(updateData);
       })
       .then(function(res) {
         res.shoud.have.status(201);
-        return BlogPost.findById(updateData.id).exec();
+        res.should.be.json;
+        // did not include this before:
+        res.body.should.be.a('object');
+          res.body.title.should.equal(updateData.title);
+          res.body.author.should.equal(
+            `${updateData.author.firstName} ${updateData.author.lastName}`);
+          res.body.content.should.equal(updateData.content);
+
+          // I had updateData.id instead before?
+        return BlogPost.findById(res.body.id).exec();
       })
       .then(function(blogpost) {
         blogpost.title.should.equal(updateData.title);
         blogpost.content.should.equal(updateData.content);
+        blogpost.author.firstName.should.equal(updateData.author.firstName);
+          blogpost.author.lastName.should.equal(updateData.author.lastName);
       });
   });
 });
