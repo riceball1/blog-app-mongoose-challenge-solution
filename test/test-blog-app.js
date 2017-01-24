@@ -87,7 +87,7 @@ describe('GET endpoint', function() {
 
         res.body.forEach(function(blogpost) {
           blogpost.should.be.a('object');
-          blopost.should.include.keys('id', 'title', 'author', 'content', 'created');
+          blogpost.should.include.keys('id', 'title', 'author', 'content', 'created');
           resBlogPost = res.body.blogposts[0];
           return BlogPost.findById(res.BlogPost.id);
         })
