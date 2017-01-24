@@ -82,7 +82,7 @@ describe('GET endpoint', function() {
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
-        res.body.should.be.a('object');
+        res.body.should.be.a('array');
         res.body.should.have.length.of.at.least(1);
 
         res.body.forEach(function(blogpost) {
